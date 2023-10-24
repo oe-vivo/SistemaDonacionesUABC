@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+<h2>Iniciar Sesión</h2>
+
+<form action="/iniciarSesion" method="post">
+    <label for="correo">Correo Electrónico:</label>
+    <input type="email" name="correo" id="correo" required><br><br>
+
+    <label for="contrasena">Contraseña:</label>
+    <input type="password" name="contrasena" id="contrasena" required><br><br>
+
+    <button type="submit">Iniciar Sesión</button>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+</form>
+</body>
+</html>

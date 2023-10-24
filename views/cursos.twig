@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Calificaciones en Cursos</title>
+</head>
+<body>
+    <h1>Calificaciones en Cursos</h1>
+    <h2>Calificaciones de {{ estudiante.nombre }}</h2>
+    <ul>
+        {% for calificacion in estudiante.calificaciones %}
+            <li>{{ calificacion.curso.nombre }}: {{ calificacion.valor }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

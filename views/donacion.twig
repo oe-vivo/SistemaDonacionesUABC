@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donación</title>
+</head>
+<body>
+<h2>Donación</h2>
+
+<form action="/procesar-donacion" method="post">
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" required><br><br>
+
+    <label for="rfc">RFC:</label>
+    <input type="text" name="rfc" required><br><br>
+
+    <label for="importe">Importe a donar:</label>
+    <input type="number" name="importe" required><br><br>
+
+    <label for="metodoPago">Método de Pago:</label>
+    <select name="metodoPago" required>
+        <option value="tarjeta">Tarjeta de Crédito</option>
+        <option value="transferencia">Transferencia Bancaria</option>
+    </select><br><br>
+
+    <label for="telefono">Teléfono:</label>
+    <input type="tel" name="telefono" required><br><br>
+
+    <button type="submit">Donar</button>
+</form>
+
+<a href="/historial-donaciones">Historial de Donaciones</a>
+</body>
+</html>
