@@ -1,7 +1,7 @@
 # SistemaDonacionesUABC
 # Plataforma de Donaciones para Egresados y Personas Externas
 
-Bienvenido a la Plataforma de Donaciones para la Universidad XYZ. Esta plataforma permite a egresados y personas externas realizar donaciones a la universidad, especificando a qué carrera o programa desean dirigir su contribución.
+Bienvenido a la Plataforma de Donaciones para la Universidad Autonoma de Baja California. Esta plataforma permite a egresados y personas externas realizar donaciones a la universidad, especificando a qué carrera o programa desean dirigir su contribución.
 
 ## Funcionalidades
 
@@ -16,6 +16,8 @@ Bienvenido a la Plataforma de Donaciones para la Universidad XYZ. Esta plataform
 - **Express.js:** Hemos implementado el servidor y la API utilizando el framework Express.js para la creación de servicios web.
 
 - **Base de Datos:** Usamos una base de datos (puedes especificar la base de datos que elijas, como MongoDB, PostgreSQL, etc.) para almacenar y gestionar la información de donaciones y otros datos relevantes.
+  
+- **Twig:** Utilizamos el motor de plantillas Twig para generar vistas dinámicas en el lado del servidor.
 
 ## Configuración y Ejecución
 
