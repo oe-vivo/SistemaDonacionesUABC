@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'octavio', //contraseña de mysql LOCAL
+    password: 'erickson12', //contraseña de mysql LOCAL
     database: 'uabc', //Nombre de la base de datos
 });
 

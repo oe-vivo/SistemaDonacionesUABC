@@ -11,13 +11,14 @@ app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   // Renderiza una vista Twig
-  res.render('login.twig', { mensaje: '¡Hola, mundo!' });
+  res.render('nosotros.twig');
 });
 
 app.get('/login', (req, res) => {
   // Renderiza una vista Twig
   res.render('login.twig');
 });
+
 app.get('/donacion', (req, res) => {
   // Renderiza una vista Twig
   res.render('donacion.twig');
