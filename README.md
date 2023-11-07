@@ -23,5 +23,6 @@ Bienvenido a la Plataforma de Donaciones para la Universidad Autonoma de Baja Ca
 
 1. Clona o descarga el proyecto en su maquina
 2. Una vez en tu IDE en la terminal ejecuta npm install para que se instalen las dependencia del json
-
+3. Dentro de la carpeta config existe un archivo .sql, con las sentencias necesarias para crear las tablas relacionales que funcionan en el sistema.
+   
 
