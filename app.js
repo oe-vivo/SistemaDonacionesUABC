@@ -1,12 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('./config/database'); // Reemplaza con la ruta correcta a tu archivo de configuración de la base de datos
 const twig = require('twig');
+const rolesController = require('./controllers/rolesController');
 const usuarioController = require('./controllers/usuarioController');
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 // Define tus rutas y controladores aquí
 
 app.get('/', (req, res) => {
@@ -24,10 +25,13 @@ app.get('/donacion', (req, res) => {
   res.render('donacion.twig');
 });
 
-
 app.post('/iniciarSesion', usuarioController.iniciarSesion);
 
-
+// Rutas para roles
+app.get('/api/roles', rolesController.obtenerRoles);
+app.post('/api/roles', rolesController.crearRol);
+app.put('/api/roles/:id', rolesController.actualizarRol);
+app.delete('/api/roles/:id', rolesController.eliminarRol);
 
 // Incluye más rutas y controladores según tus necesidades
 
