@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "root",
+    "password": "erickson12",
+    "database": "uabc",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}
