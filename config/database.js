@@ -7,7 +7,7 @@ module.exports = {
         database: 'uabc',
         host: 'localhost',
         dialect: 'mysql',
-     },
+    },
     // test: {
     //     username: 'tu_usuario',
     //     password: 'tu_contraseña',
