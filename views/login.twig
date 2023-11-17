@@ -3,6 +3,15 @@
 <head>
     <title>Iniciar Sesión</title>
     <style>
+    .imagen-estilo {
+    width: 200px;
+    height: 250px;
+    position: fixed; 
+    bottom: 10px; 
+    right: 10px; 
+    z-index: 1; /* Asegura que la imagen esté por encima del fondo */
+}
+
         @import url('https://rsms.me/inter/inter-ui.css');
         ::selection {
             background: #2D2F36;
@@ -138,13 +147,13 @@
     </style>
 </head>
 <body>
- <img src="Cimarroncin.png">
+ <img src="https://induccionuabc.files.wordpress.com/2019/08/listas_grupos_curso_induccion.png?w=353&h=491" class="imagen-estilo">
                 <svg viewBox="0 0 320 300">
     <div class="page">
         <div class="container">
             <div class="left">
                 <div class="login">¡Bienvenido al sistema de donaciones de la UABC!</div>
-                <div class="eula">La UABC te da la bienvenida a nuestra plataforma de donaciones. Tu apoyo impulsa la educación e investigación en nuestra institución, contribuyendo al crecimiento de nuestra comunidad académica.</div>
+                <div class="eula">La UABC te da la bienvenida a nuestra plataforma de donaciones. Tu apoyo impulsa la educación e investigación en nuestra institución.</div>
             </div>
             <div class="right">
                 <svg viewBox="0 0 320 300">
@@ -170,13 +179,11 @@
                     <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35-25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
                 </svg>
                 <div class="form">
-                    <form action="/iniciarSesion" method="post">
                     <label for="email"><strong>Correo Electrónico</strong></label>
-                    <input type="email" id="email" name="correo_electronico">
+                    <input type="email" id="email">
                     <label for="password"><strong>Contraseña</strong></label>
-                    <input type="password" id="password" name="contrasena">
+                    <input type="password" id="password">
                     <input type="submit" id="submit" value="Iniciar Sesión" class="bold-button">
-                    </form>
                 </div>
             </div>
         </div>
