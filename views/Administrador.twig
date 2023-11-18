@@ -1,0 +1,99 @@
+<style>
+
+    .header {
+    background-color: #066C35;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Cambio de flex-start a space-between */
+    /* otras propiedades */
+}
+
+.bottom-nav {
+    margin-top: -50px;
+    width: 100%;
+    background-color: #066C35; /* Color de fondo */
+    color: white; /* Color del texto */
+    text-align: center;
+    padding: 10px 0;
+}
+
+.bottom-nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bottom-nav li {
+    display: inline; /* Muestra los elementos en línea */
+    margin-right: 150px; /* Espacio entre elementos */
+}
+
+.bottom-nav a {
+    color: white; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 18px; /* Tamaño del texto */
+}
+footer {
+            margin-top: 230px;
+            text-align: center;
+        }
+
+</style>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador de Donaciones - UABC</title>
+    <link rel="stylesheet" href="estilos.css"> <!-- Enlaza tu archivo CSS personalizado aquí -->
+</head>
+<body>
+     <div class="header">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpp9PdI7lJeIwl5_acGIIBCXR7pN9OfXGzhCN_0hlscxlEAubtetXa8MQly1dbjT-v964&usqp=CAU"">
+    <p>Universidad Autónoma de Baja California.</p> 
+    <p>                                            </p>
+    
+</div>
+
+   <nav class="bottom-nav">
+    <ul>
+        <li><a href="inicio.html">Inicio</a></li>
+        <li><a href="donaciones.html">Donaciones</a></li>
+        <li><a href="reportes.html">Reportes</a></li>
+        <li><a href="configuracion.html">Configuración</a></li>
+        <li><a href="http://localhost:3000">Logout</a></li>
+    </ul>
+</nav>
+
+    <main>
+        <h2>Donaciones Pendientes</h2>
+        <table>
+            <tr>
+                <th>Nombre del Donante</th>
+                <th>Monto</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+            <tr>
+                <td>Juan Pérez</td>
+                <td>$100</td>
+                <td>2023-11-18</td>
+                <td>
+                    <button>Procesar</button>
+                    <button>Rechazar</button>
+                </td>
+            </tr>
+            <!-- Agrega más filas de donaciones pendientes aquí -->
+        </table>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Donaciones UABC - Todos los derechos reservados</p>
+    </footer>
+</body>
+</html>

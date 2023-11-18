@@ -11,18 +11,23 @@ app.use(bodyParser.json());
 // Define tus rutas y controladores aquí
 
 app.get('/', (req, res) => {
-  // Renderiza una vista Twig
-  res.render('nosotros.twig');
+    // Renderiza una vista Twig
+    res.render('nosotros.twig');
 });
 
 app.get('/login', (req, res) => {
-  // Renderiza una vista Twig
-  res.render('login.twig');
+    // Renderiza una vista Twig
+    res.render('login.twig');
 });
 
 app.get('/donacion', (req, res) => {
-  // Renderiza una vista Twig
-  res.render('donacion.twig');
+    // Renderiza una vista Twig
+    res.render('donacion.twig');
+});
+
+app.get('/Administrador', (req, res) => {
+    // Renderiza una vista Twig
+    res.render('Administrador.twig');
 });
 
 app.post('/iniciarSesion', usuarioController.iniciarSesion);
@@ -36,5 +41,5 @@ app.delete('/api/roles/:id', rolesController.eliminarRol);
 // Incluye más rutas y controladores según tus necesidades
 
 app.listen(3000, () => {
-  console.log('Servidor en ejecución en http://localhost:3000');
+    console.log('Servidor en ejecución en http://localhost:3000');
 });
