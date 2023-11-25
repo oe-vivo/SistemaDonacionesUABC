@@ -30,6 +30,12 @@ app.get('/Administrador', (req, res) => {
     res.render('Administrador.twig');
 });
 
+app.get('/Registro', (req, res) => {
+    // Renderiza una vista Twig
+    res.render('Registro.twig');
+});
+
+
 app.post('/iniciarSesion', usuarioController.iniciarSesion);
 
 // Rutas para roles
