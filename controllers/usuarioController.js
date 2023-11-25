@@ -10,9 +10,10 @@ async function iniciarSesion(req, res) {
 
         if (usuario) {
             // Comparar la contraseña proporcionada con la almacenada en la base de datos
-            if (contrasena === usuario.contrasena) {
+            const contrasenaValida = await bcrypt.compare(contrasena, usuario.contrasena);
+
+            if (contrasenaValida) {
                 // Las credenciales son válidas, el usuario ha iniciado sesión con éxito
-                //res.json({ mensaje: 'Inicio de sesión exitoso', usuario });
                 res.redirect('/donacion');
             } else {
                 // Contraseña incorrecta
