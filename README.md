@@ -25,7 +25,7 @@ Bienvenido a la Plataforma de Donaciones para la Universidad Autonoma de Baja Ca
 2. Una vez en tu IDE en la terminal ejecuta npm install para que se instalen las dependencia del json
 3. En la terminal pon npm install -g nodemon
 4. Dentro de la carpeta config existe un archivo .sql, con las sentencias necesarias para crear las tablas relacionales que funcionan en el sistema en mysql. *LA BASE DE DATOS ES LOCAL*
-5. En el archivo database.js dentro de la carpeta config, ahi pon el nombre de la base de datos "uabc', tu usuario de mysql y tu contraseña
+5. En el archivo knexfile.js dentro de la carpeta config, ahi pon el nombre de la base de datos "uabc', tu usuario de mysql y tu contraseña
 6. Para correr el programa tienes que poner npm run dev
    
 

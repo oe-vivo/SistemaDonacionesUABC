@@ -1,69 +1,48 @@
-// rolesController.js
+const knex = require('knex')(require('../knexfile'));
 
-const db = require('../models');
-const Roles = db.Roles;
-const rolesModel= require('../models/roles');
-
-// rolesController.js
-
-const obtenerRoles = async (req, res) => {
+async function obtenerRoles(req, res) {
     try {
-        // Lógica para obtener roles desde la base de datos
-        const roles = await rolesModel().findAll(); // Reemplaza con tu lógica
-        console.log('Roles obtenidos:', roles);
-        res.json({ roles });
+        const resultados = await knex('roles').select('*');
+        res.json(resultados);
     } catch (error) {
-        console.error('Error al obtener roles:', error);
-        res.status(500).json({ error: 'Error interno del servidor' });
+        console.error('Error al obtener datos:', error);
+        res.status(500).json({ error: 'Error al obtener datos de la tabla.' });
     }
-};
+}
 
-
-const crearRol = async (req, res) => {
+async function crearRol(req, res) {
     try {
-        const nuevoRol = await Roles.create(req.body);
-        return res.status(201).json(nuevoRol);
+        const nuevoRol = req.body;
+        const resultado = await knex('roles').insert(nuevoRol);
+        res.json({ mensaje: 'Rol creado con éxito', id: resultado[0] });
     } catch (error) {
-        return res.status(500).json({ error: 'Error al crear el rol' });
+        console.error('Error al crear el rol:', error);
+        res.status(500).json({ error: 'Error al crear el rol.' });
     }
-};
+}
 
-const actualizarRol = async (req, res) => {
-    const { id } = req.params;
-
+async function actualizarRol(req, res) {
     try {
-        const [numFilasActualizadas, rolesActualizados] = await Roles.update(req.body, {
-            where: { role_id: id },
-            returning: true,
-        });
-
-        if (numFilasActualizadas > 0) {
-            return res.status(200).json(rolesActualizados[0]);
-        } else {
-            return res.status(404).json({ error: 'Rol no encontrado' });
-        }
+        const idRol = req.params.id;
+        const datosActualizados = req.body;
+        await knex('roles').where({ id: idRol }).update(datosActualizados);
+        res.json({ mensaje: 'Rol actualizado con éxito' });
     } catch (error) {
-        return res.status(500).json({ error: 'Error al actualizar el rol' });
+        console.error('Error al actualizar el rol:', error);
+        res.status(500).json({ error: 'Error al actualizar el rol.' });
     }
-};
+}
 
-const eliminarRol = async (req, res) => {
-    const { id } = req.params;
-
+async function eliminarRol(req, res) {
     try {
-        const numFilasEliminadas = await Roles.destroy({
-            where: { role_id: id },
-        });
-
-        if (numFilasEliminadas > 0) {
-            return res.status(204).send();
-        } else {
-            return res.status(404).json({ error: 'Rol no encontrado' });
-        }
+        const idRol = req.params.id;
+        await knex('roles').where({ id: idRol }).del();
+        res.json({ mensaje: 'Rol eliminado con éxito' });
     } catch (error) {
-        return res.status(500).json({ error: 'Error al eliminar el rol' });
+        console.error('Error al eliminar el rol:', error);
+        res.status(500).json({ error: 'Error al eliminar el rol.' });
     }
-};
+}
 
 module.exports = {
     obtenerRoles,

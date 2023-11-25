@@ -1,30 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <title>Iniciar Sesión</title>
     <style>
-    .imagen-estilo {
-    width: 200px;
-    height: 250px;
-    position: fixed; 
-    bottom: 10px; 
-    right: 10px; 
-    z-index: 1; /* Asegura que la imagen esté por encima del fondo */
-}
-
         @import url('https://rsms.me/inter/inter-ui.css');
+
         ::selection {
             background: #2D2F36;
         }
+
         ::-moz-selection {
             background: #2D2F36;
         }
+
         body {
             background: #086B40;
             font-family: 'Inter UI', sans-serif;
             margin: 0;
             padding: 20px;
         }
+
         .page {
             background: #086B40;
             display: flex;
@@ -34,6 +31,7 @@
             place-content: center;
             width: calc(100% - 40px);
         }
+
         @media (max-width: 767px) {
             .page {
                 height: auto;
@@ -41,12 +39,14 @@
                 padding-bottom: 20px;
             }
         }
+
         .container {
             display: flex;
             height: 320px;
             margin: 0 auto;
             width: 640px;
         }
+
         @media (max-width: 767px) {
             .container {
                 flex-direction: column;
@@ -54,6 +54,7 @@
                 width: 320px;
             }
         }
+
         .left {
             background: white;
             height: calc(100% - 40px);
@@ -61,6 +62,7 @@
             position: relative;
             width: 50%;
         }
+
         @media (max-width: 767px) {
             .left {
                 height: 100%;
@@ -69,24 +71,28 @@
                 max-height: 270px;
             }
         }
+
         .login {
             font-size: 20px;
             font-weight: 900;
             margin: 50px 40px 40px;
         }
+
         .eula {
             color: #000000;
             font-size: 12px;
             line-height: 1.5;
             margin: 40px;
         }
+
         .right {
             background: #E1A648;
-            box-shadow: 0px 0px 40px 16px rgba(0,0,0,0.22);
+            box-shadow: 0px 0px 40px 16px rgba(0, 0, 0, 0.22);
             color: #F1F1F2;
             position: relative;
             width: 50%;
         }
+
         @media (max-width: 767px) {
             .right {
                 flex-shrink: 0;
@@ -95,28 +101,33 @@
                 max-height: 350px;
             }
         }
+
         svg {
             position: absolute;
             width: 320px;
         }
+
         path {
             fill: none;
             stroke: url(#linearGradient);
             stroke-width: 4;
             stroke-dasharray: 240 1386;
         }
+
         .form {
             margin: 40px;
             position: absolute;
         }
+
         label {
-            color:  #000000;
+            color: #000000;
             display: block;
             font-size: 14px;
             height: 16px;
             margin-top: 20px;
             margin-bottom: 5px;
         }
+
         input {
             background: transparent;
             border: 0;
@@ -127,119 +138,164 @@
             outline: none !important;
             width: 100%;
         }
-        input::-moz-focus-inner { 
-            border: 0; 
+
+        input::-moz-focus-inner {
+            border: 0;
         }
+
         #submit {
             color: #000000;
             margin-top: 40px;
             transition: color 300ms;
         }
+
         #submit:focus {
             color: #f2f2f2;
         }
+
         #submit:active {
             color: #d0d0d2;
         }
+
         .bold-button {
-    font-weight: bold;
-  }
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
- <img src="https://induccionuabc.files.wordpress.com/2019/08/listas_grupos_curso_induccion.png?w=353&h=491" class="imagen-estilo">
-                <svg viewBox="0 0 320 300">
+<img src="Cimarroncin.png">
+<svg viewBox="0 0 320 300">
     <div class="page">
         <div class="container">
             <div class="left">
                 <div class="login">¡Bienvenido al sistema de donaciones de la UABC!</div>
-                <div class="eula">La UABC te da la bienvenida a nuestra plataforma de donaciones. Tu apoyo impulsa la educación e investigación en nuestra institución.</div>
+                <div class="eula">La UABC te da la bienvenida a nuestra plataforma de donaciones. Tu apoyo impulsa la
+                    educación e investigación en nuestra institución, contribuyendo al crecimiento de nuestra comunidad
+                    académica.
+                </div>
             </div>
             <div class="right">
                 <svg viewBox="0 0 320 300">
                     <defs>
                         <linearGradient
 
-                                        id="linearGradient"
-                                        x1="13"
-                                        y1="193.49992"
-                                        x2="307"
-                                        y2="193.49992"
-                                        gradientUnits="userSpaceOnUse">
+                                id="linearGradient"
+                                x1="13"
+                                y1="193.49992"
+                                x2="307"
+                                y2="193.49992"
+                                gradientUnits="userSpaceOnUse">
                             <stop
-                                  style="stop-color:#538E30;"
-                                  offset="0"
-                                  id="stop876" />
+                                    style="stop-color:#538E30;"
+                                    offset="0"
+                                    id="stop876"/>
                             <stop
-                                  style="stop-color:#086B40;"
-                                  offset="1"
-                                  id="stop878" />
+                                    style="stop-color:#086B40;"
+                                    offset="1"
+                                    id="stop878"/>
                         </linearGradient>
                     </defs>
-                    <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35-25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143" />
+                    <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35-25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143"/>
                 </svg>
                 <div class="form">
-                    <label for="email"><strong>Correo Electrónico</strong></label>
-                    <input type="email" id="email">
-                    <label for="password"><strong>Contraseña</strong></label>
-                    <input type="password" id="password">
-                    <input type="submit" id="submit" value="Iniciar Sesión" class="bold-button">
+                    <form action="/iniciarSesion" method="post">
+                        <label for="email"><strong>Correo Electrónico</strong></label>
+                        <input type="email" id="email" name="correo_electronico">
+                        <label for="password"><strong>Contraseña</strong></label>
+                        <input type="password" id="password" name="contrasena">
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                        <input type="submit" id="submit" value="Iniciar Sesión" class="bold-button">
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <script src="https://apis.google.com/js/api.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.0/anime.min.js"></script>
     <script>
-    var current = null;
-    document.querySelector('#email').addEventListener('focus', function(e) {
-      if (current) current.pause();
-      current = anime({
-        targets: 'path',
-        strokeDashoffset: {
-          value: 0,
-          duration: 700,
-          easing: 'easeOutQuart'
-        },
-        strokeDasharray: {
-          value: '240 1386',
-          duration: 700,
-          easing: 'easeOutQuart'
-        }
-      });
-    });
-    document.querySelector('#password').addEventListener('focus', function(e) {
-      if (current) current.pause();
-      current = anime({
-        targets: 'path',
-        strokeDashoffset: {
-          value: -336,
-          duration: 700,
-          easing: 'easeOutQuart'
-        },
-        strokeDasharray: {
-          value: '240 1386',
-          duration: 700,
-          easing: 'easeOutQuart'
-        }
-      });
-    });
-    document.querySelector('#submit').addEventListener('focus', function(e) {
-      if (current) current.pause();
-      current = anime({
-        targets: 'path',
-        strokeDashoffset: {
-          value: -730,
-          duration: 700,
-          easing: 'easeOutQuart'
-        },
-        strokeDasharray: {
-          value: '530 1386',
-          duration: 700,
-          easing: 'easeOutQuart'
-        }
-      });
-    });
+        var current = null;
+        document.querySelector('#email').addEventListener('focus', function (e) {
+            if (current) current.pause();
+            current = anime({
+                targets: 'path',
+                strokeDashoffset: {
+                    value: 0,
+                    duration: 700,
+                    easing: 'easeOutQuart'
+                },
+                strokeDasharray: {
+                    value: '240 1386',
+                    duration: 700,
+                    easing: 'easeOutQuart'
+                }
+            });
+        });
+        document.querySelector('#password').addEventListener('focus', function (e) {
+            if (current) current.pause();
+            current = anime({
+                targets: 'path',
+                strokeDashoffset: {
+                    value: -336,
+                    duration: 700,
+                    easing: 'easeOutQuart'
+                },
+                strokeDasharray: {
+                    value: '240 1386',
+                    duration: 700,
+                    easing: 'easeOutQuart'
+                }
+            });
+        });
+        document.querySelector('#submit').addEventListener('focus', function (e) {
+            if (current) current.pause();
+            current = anime({
+                targets: 'path',
+                strokeDashoffset: {
+                    value: -730,
+                    duration: 700,
+                    easing: 'easeOutQuart'
+                },
+                strokeDasharray: {
+                    value: '530 1386',
+                    duration: 700,
+                    easing: 'easeOutQuart'
+                }
+            });
+        });
+    </script>
+</svg>
+<script>
+    function onSignIn(googleUser) {
+        // Aquí puedes obtener la información del usuario usando googleUser.getBasicProfile()
+        // y enviarla al servidor para el proceso de inicio de sesión.
+        console.log('Usuario autenticado:', googleUser.getBasicProfile());
+    }
+
+    function renderGoogleSignInButton() {
+        gapi.signin2.render('google-signin-container', {
+            'scope': 'profile email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSignIn
+        });
+    }
 </script>
-                </svg>
+
+<script>
+    function startGoogleSignIn() {
+        gapi.load('auth2', function () {
+            gapi.auth2.init({
+                client_id: '696835881798-df73an1f0camplh5ebo18vmpr1a9v300.apps.googleusercontent.com'
+            }).then(function () {
+                renderGoogleSignInButton();
+            });
+        });
+    }
+
+    startGoogleSignIn();
+</script>
+
 </body>
 </html>
