@@ -246,6 +246,7 @@
         Subir PDF de tu donación
     </label>
     <button id="send-button">Enviar</button>
+    <button id="send-facturar">Factura</button>
 </div>
 <div>
     <input type="checkbox" id="scales" name="scales" checked />
@@ -275,6 +276,11 @@
     <script>
     document.getElementById('send-button').addEventListener('click', function() {
         window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+    });
+</script>
+<script>
+    document.getElementById('send-facturar').addEventListener('click', function() {
+        window.location.href = '/Factura';
     });
 </script>
 

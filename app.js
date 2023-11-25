@@ -35,6 +35,11 @@ app.get('/Registro', (req, res) => {
     res.render('Registro.twig');
 });
 
+app.get('/Factura', (req, res) => {
+    // Renderiza una vista Twig
+    res.render('Factura.twig');
+});
+
 
 app.post('/iniciarSesion', usuarioController.iniciarSesion);
 
