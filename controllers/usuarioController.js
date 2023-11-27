@@ -43,18 +43,31 @@ async function crearUsuario(req, res) {
     try {
         const { nombre, correo_electronico, contrasena, role_id } = req.body;
 
+        console.log(contrasena);
+
         // Hash de la contraseña antes de almacenarla en la base de datos
-        const hashContrasena = await bcrypt.hash(contrasena, 10);
+        try {
+            const hashContrasena = await bcrypt.hash(contrasena, 10);
+            // Resto del código
 
-        const nuevoUsuario = {
-            nombre: nombre,
-            correo_electronico: correo_electronico,
-            contrasena: hashContrasena,
-            role_id: role_id,
-        };
+            const nuevoUsuario = {
+                nombre: nombre,
+                correo_electronico: correo_electronico,
+                contrasena: hashContrasena,
+                role_id: role_id,
+            };
 
-        const resultado = await knex('usuarios').insert(nuevoUsuario);
-        res.json({ mensaje: 'Usuario creado con éxito', id: resultado[0] });
+            console.log(contrasena);
+            console.log(hashContrasena);
+
+            const resultado = await knex('usuarios').insert(nuevoUsuario);
+            res.json({ mensaje: 'Usuario creado con éxito', id: resultado[0] });
+
+        } catch (error) {
+            console.error('Error al hacer el hash de la contraseña:', error);
+            return res.status(500).json({ error: 'Error al procesar la contraseña.' });
+        }
+
     } catch (error) {
         console.error('Error al crear usuario:', error);
         res.status(500).json({ error: 'Error al crear usuario.' });

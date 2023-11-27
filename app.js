@@ -48,7 +48,7 @@ app.post('/iniciarSesion', usuarioController.iniciarSesion);
 // Agrega esto a tu archivo
 app.get('/registrar', (req, res) => {
     // Renderiza la vista de registro Twig
-    res.render('registrar.twig');
+    res.render('Registro.twig');
 });
 
 
