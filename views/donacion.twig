@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UABC Make a Donation</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
     body {
         font-family: Arial, sans-serif;
@@ -246,7 +247,7 @@
         Subir PDF de tu donación
     </label>
     <button id="send-button">Enviar</button>
-    <button id="send-facturar">Factura</button>
+    <button id="send-facturar" class="custom-file-upload">Factura</button>
 </div>
 <div>
     <input type="checkbox" id="scales" name="scales" checked />
@@ -273,11 +274,32 @@
         setInterval(moveCarousel, 3000);
     </script>
 
-    <script>
+<script>
     document.getElementById('send-button').addEventListener('click', function() {
-        window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+        // Verificar si la casilla está marcada
+        var isChecked = document.getElementById('scales').checked;
+        if (isChecked) {
+            // Si la casilla está marcada, muestra el SweetAlert
+            Swal.fire({
+                title: '¡Gracias por tu donativo!',
+                text: 'Con tu apoyo ayudaremos a más cimarrones a alcanzar sus metas.',
+                icon: 'success',
+                confirmButtonText: 'Cerrar'
+            });
+        } else {
+            // Si la casilla no está marcada, muestra un mensaje de error
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor, acepta los términos y condiciones para continuar.',
+                icon: 'error',
+                confirmButtonText: 'Cerrar'
+            });
+        }
     });
 </script>
+
+
+
 <script>
     document.getElementById('send-facturar').addEventListener('click', function() {
         window.location.href = '/Factura';

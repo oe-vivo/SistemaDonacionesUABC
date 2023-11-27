@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Subida de Archivo Fiscal</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
     .header {
         background-color: #066C35;
@@ -44,7 +45,21 @@
     <form action="/ruta_del_servidor" method="post" enctype="multipart/form-data">
         <label for="fileUpload">Selecciona el archivo PDF:</label>
         <input type="file" id="fileUpload" name="fileUpload" accept=".pdf"><br><br>
-        <input type="submit" value="Subir Archivo">
+        <input type="button" id="upload-button" value="Subir Archivo">
     </form>
+
+   <script>
+    document.getElementById('upload-button').addEventListener('click', function() {
+        // Mostrar SweetAlert
+        Swal.fire({
+            title: '¡Gracias por tu donativo!',
+            text: 'Con tu apoyo ayudaremos a más cimarrones a alcanzar sus metas.',
+            icon: 'success',
+            confirmButtonText: 'Cerrar'
+        });
+    });
+</script>
+
+
 </body>
 </html>
