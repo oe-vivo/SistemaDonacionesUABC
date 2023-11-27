@@ -31,11 +31,26 @@ app.get('/Administrador', (req, res) => {
     res.render('Administrador.twig');
 });
 
+
+app.get('/Registro', (req, res) => {
+    // Renderiza una vista Twig
+    res.render('Registro.twig');
+});
+
+app.get('/Factura', (req, res) => {
+    // Renderiza una vista Twig
+    res.render('Factura.twig');
+});
+
+
+app.post('/iniciarSesion', usuarioController.iniciarSesion);
+
 // Agrega esto a tu archivo
 app.get('/registrar', (req, res) => {
     // Renderiza la vista de registro Twig
     res.render('registrar.twig');
 });
+
 
 
 // Rutas para roles
