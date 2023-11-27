@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const twig = require('twig');
 const rolesController = require('./controllers/rolesController');
 const usuarioController = require('./controllers/usuarioController');
+const knex = require('knex')(require('./knexfile'));
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -30,6 +31,7 @@ app.get('/Administrador', (req, res) => {
     res.render('Administrador.twig');
 });
 
+
 app.get('/Registro', (req, res) => {
     // Renderiza una vista Twig
     res.render('Registro.twig');
@@ -43,13 +45,32 @@ app.get('/Factura', (req, res) => {
 
 app.post('/iniciarSesion', usuarioController.iniciarSesion);
 
+// Agrega esto a tu archivo
+app.get('/registrar', (req, res) => {
+    // Renderiza la vista de registro Twig
+    res.render('registrar.twig');
+});
+
+
+
 // Rutas para roles
+// Ruta para obtener toda la información de la tabla
 app.get('/api/roles', rolesController.obtenerRoles);
+
+// Crear un nuevo rol
 app.post('/api/roles', rolesController.crearRol);
+
+// Actualizar un rol existente
 app.put('/api/roles/:id', rolesController.actualizarRol);
+
+// Eliminar un rol
 app.delete('/api/roles/:id', rolesController.eliminarRol);
 
-// Incluye más rutas y controladores según tus necesidades
+// Incluye más rutas y controladores según se necesite
+
+// Agrega esto al final de tu archivo (después de las rutas existentes)
+app.post('/crearUsuario', usuarioController.crearUsuario);
+app.post('/iniciarSesion', usuarioController.iniciarSesion);
 
 app.listen(3000, () => {
     console.log('Servidor en ejecución en http://localhost:3000');
