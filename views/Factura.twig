@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subida de Archivo Fiscal</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+    .header {
+        background-color: #066C35;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logout-button {
+        padding: 10px 20px;
+        background-color: #066C35;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100px;
+        height: 40px;
+    }
+
+    .header-logo {
+        height: 60px;
+        margin-right: 10px;
+    }
+        /* Añade aquí tus estilos CSS */
+    </style>
+</head>
+<body>
+ <div class="header">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpp9PdI7lJeIwl5_acGIIBCXR7pN9OfXGzhCN_0hlscxlEAubtetXa8MQly1dbjT-v964&usqp=CAU"">
+    Universidad Autónoma de Baja California. 
+    <br>Por la realización plena del hombre.
+    <a href="http://localhost:3000" class="logout-button">Logout</a>
+</div>
+
+    <h2>Para proceder con la facturación, es necesario que subas tu archivo PDF de situación fiscal. Este archivo es esencial para verificar tu información fiscal y completar el proceso de facturación. Por favor, selecciona y sube tu archivo utilizando el botón de abajo.</h2>
+    <form action="/ruta_del_servidor" method="post" enctype="multipart/form-data">
+        <label for="fileUpload">Selecciona el archivo PDF:</label>
+        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf"><br><br>
+        <input type="button" id="upload-button" value="Subir Archivo">
+    </form>
+
+   <script>
+    document.getElementById('upload-button').addEventListener('click', function() {
+        // Mostrar SweetAlert
+        Swal.fire({
+            title: '¡Gracias por tu donativo!',
+            text: 'Con tu apoyo ayudaremos a más cimarrones a alcanzar sus metas.',
+            icon: 'success',
+            confirmButtonText: 'Cerrar'
+        });
+    });
+</script>
+
+
+</body>
+</html>

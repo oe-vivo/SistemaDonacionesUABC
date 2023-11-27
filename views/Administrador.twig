@@ -11,7 +11,6 @@
     justify-content: space-between; /* Cambio de flex-start a space-between */
     /* otras propiedades */
 }
-
 .bottom-nav {
     margin-top: -50px;
     width: 100%;
@@ -65,7 +64,6 @@ footer {
         <li><a href="inicio.html">Inicio</a></li>
         <li><a href="donaciones.html">Donaciones</a></li>
         <li><a href="reportes.html">Reportes</a></li>
-        <li><a href="configuracion.html">Configuración</a></li>
         <li><a href="http://localhost:3000">Logout</a></li>
     </ul>
 </nav>
@@ -80,16 +78,43 @@ footer {
                 <th>Acciones</th>
             </tr>
             <tr>
-                <td>Juan Pérez</td>
-                <td>$100</td>
-                <td>2023-11-18</td>
-                <td>
-                    <button>Procesar</button>
-                    <button>Rechazar</button>
-                </td>
-            </tr>
-            <!-- Agrega más filas de donaciones pendientes aquí -->
+    <td>Juan Pérez</td>
+    <td>$100</td>
+    <td>2023-11-18</td>
+    <td>
+        <input type="checkbox" name="donacion" value="1"> <!-- Casilla de verificación -->
+    </td>
+</tr>
+<tr>
+    <td>Maria López</td>
+    <td>$200</td>
+    <td>2023-11-20</td>
+    <td>
+        <input type="checkbox" name="donacion" value="2">
+    </td>
+</tr>
+<tr>
+    <td>Carlos Hernández</td>
+    <td>$150</td>
+    <td>2023-11-19</td>
+    <td>
+        <input type="checkbox" name="donacion" value="3">
+    </td>
+</tr>
+<tr>
+    <td>Laura Martínez</td>
+    <td>$250</td>
+    <td>2023-11-21</td>
+    <td>
+        <input type="checkbox" name="donacion" value="4">
+    </td>
+</tr>
+<!-- Continúa agregando más filas según sea necesario -->
+
         </table>
+        <div style="text-align:center; margin-top:50px;">
+                <input type="submit" value="Procesar" id="btnProcesar">
+            </div>
     </main>
 
     <footer>
