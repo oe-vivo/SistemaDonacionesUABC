@@ -240,15 +240,17 @@
             <p>País: México</p>
         </div>
 
-      
-    <div class="upload-container">
-    <input id="file-upload" type="file" accept=".pdf"/>
-    <label for="file-upload" class="custom-file-upload">
-        Subir PDF de tu donación
-    </label>
-    <button id="send-button">Enviar</button>
-    <button id="send-facturar" class="custom-file-upload">Factura</button>
-</div>
+
+        <div class="upload-container">
+            <form id="donation-upload-form" action="/upload/file-upload" method="post" enctype="multipart/form-data">
+                <input id="file-upload" name="receipt" type="file" accept="image/*,application/pdf" style="display: none;"/>
+                <label for="file-upload" class="custom-file-upload">
+                    Subir Imagen de tu donación/transferencia
+                </label>
+                <button type="submit" id="send-button">Enviar</button>
+            </form>
+            <button id="send-facturar" class="custom-file-upload">Factura</button>
+        </div>
 <div>
     <input type="checkbox" id="scales" name="scales" checked />
     <label for="scales">Acepto términos y Condiciones</label>

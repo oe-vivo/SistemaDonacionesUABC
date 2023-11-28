@@ -17,11 +17,11 @@ async function iniciarSesion(req, res) {
                 res.redirect('/donacion');
             } else {
                 // Contraseña incorrecta
-                res.status(401).json({ error: 'Credenciales inválidas' });
+                res.status(401).json({ error: 'Credenciales inválidas mal pass' });
             }
         } else {
             // Usuario no encontrado
-            res.status(401).json({ error: 'Credenciales inválidas' });
+            res.status(401).json({ error: 'Credenciales inválidas Usuario no encontrado' });
         }
     } catch (error) {
         console.error('Error al iniciar sesión:', error);

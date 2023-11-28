@@ -4,13 +4,18 @@ const twig = require('twig');
 const rolesController = require('./controllers/rolesController');
 const usuarioController = require('./controllers/usuarioController');
 const knex = require('knex')(require('./knexfile'));
-
+const uploadRoutes = require('./upload');
+const uploadRfcRoutes=require('./uploadRFC');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Define tus rutas y controladores aquí
+app.set('views', './views'); // Asegúrate de que el directorio es correcto
+app.set('view engine', 'twig');
 
+app.use('/upload', uploadRoutes); // Usa las rutas de carga
+// Define tus rutas y controladores aquí
+app.use('/uploadRFC',uploadRfcRoutes);
 app.get('/', (req, res) => {
     // Renderiza una vista Twig
     res.render('nosotros.twig');
