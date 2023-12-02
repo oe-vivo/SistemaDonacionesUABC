@@ -54,7 +54,7 @@
 <div class="container">
     <h2>Formulario de Registro</h2>
     <p class="login-message">Si ya tienes una cuenta, <a href="/Login">entra aquí</a>.</p>
-    <form action="/crearUsuario" method="post">
+    <form id="registrationForm" action="/crearUsuario" method="post">
         <label for="fullname">Nombre Completo:</label>
         <input type="text" id="fullname" name="nombre" required>
 
@@ -80,10 +80,14 @@
         if (!checkbox.checked) {
             alert('Debes aceptar los términos y condiciones para registrarte.');
             return false; // Cancela el envío del formulario
+        } else {
+            // Si todo está correcto, redirecciona a la página de donación
+            window.location.href = "/donacion";
+            return false; // Esto previene que el formulario se envíe de la manera tradicional
         }
-        return true; // Continúa con el envío del formulario
     };
 </script>
+
 
 </body>
 </html>
