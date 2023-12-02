@@ -1,10 +1,10 @@
 // knexfile.js
 module.exports = {
-    client: 'mysql2',
+    client: 'mysql',
     connection: {
         host: 'localhost',
         user: 'root',
-        password: 'octavio',
+        password: 'root',
         database: 'uabc',
     },
     migrations: {

@@ -79,13 +79,14 @@
     }
 
     .upload-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margin-top: 20px;
-        width: 100%;
-    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Aumenta este valor según lo necesites */
+    margin-top: 20px;
+    width: 100%;
+}
+
 
     .custom-file-upload {
         background-color: #0E9FB9;
@@ -247,9 +248,9 @@
                 <label for="file-upload" class="custom-file-upload">
                     Subir Imagen de tu donación/transferencia
                 </label>
-                <button type="submit" id="send-button">Enviar</button>
+                <button id="send-button" style="margin-left: 20px;">Enviar</button>
+
             </form>
-            <button id="send-facturar" class="custom-file-upload">Factura</button>
         </div>
 <div>
     <input type="checkbox" id="scales" name="scales" checked />
@@ -278,18 +279,16 @@
 
 <script>
     document.getElementById('send-button').addEventListener('click', function() {
-        // Verificar si la casilla está marcada
         var isChecked = document.getElementById('scales').checked;
         if (isChecked) {
-            // Si la casilla está marcada, muestra el SweetAlert
             Swal.fire({
                 title: '¡Gracias por tu donativo!',
-                text: 'Con tu apoyo ayudaremos a más cimarrones a alcanzar sus metas.',
+                // Aquí se añade el enlace dentro del texto del SweetAlert
+                html: 'Con tu apoyo ayudaremos a más cimarrones a alcanzar sus metas. <br> Si quieres facturar, presiona <a href="/Factura">aquí</a>.',
                 icon: 'success',
                 confirmButtonText: 'Cerrar'
             });
         } else {
-            // Si la casilla no está marcada, muestra un mensaje de error
             Swal.fire({
                 title: 'Error',
                 text: 'Por favor, acepta los términos y condiciones para continuar.',
@@ -302,11 +301,6 @@
 
 
 
-<script>
-    document.getElementById('send-facturar').addEventListener('click', function() {
-        window.location.href = '/Factura';
-    });
-</script>
 
 
 </body>
