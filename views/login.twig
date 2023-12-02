@@ -220,7 +220,6 @@
     <input type="email" id="email" name="correo_electronico">
     <label for="password"><strong>Contraseña</strong></label>
     <input type="password" id="password" name="contrasena">
-    <div class="g-signin2" data-onsuccess="onSignIn"></div>
     <input type="submit" id="submit" value="Iniciar Sesión" class="bold-button">
     <!-- Leyenda con enlace para registrar -->
    <!-- Dentro de tu cuerpo de HTML, debajo del formulario -->
@@ -286,38 +285,6 @@
         });
     </script>
 </svg>
-<script>
-    function onSignIn(googleUser) {
-        // Aquí puedes obtener la información del usuario usando googleUser.getBasicProfile()
-        // y enviarla al servidor para el proceso de inicio de sesión.
-        console.log('Usuario autenticado:', googleUser.getBasicProfile());
-    }
-
-    function renderGoogleSignInButton() {
-        gapi.signin2.render('google-signin-container', {
-            'scope': 'profile email',
-            'width': 240,
-            'height': 50,
-            'longtitle': true,
-            'theme': 'dark',
-            'onsuccess': onSignIn
-        });
-    }
-</script>
-
-<script>
-    function startGoogleSignIn() {
-        gapi.load('auth2', function () {
-            gapi.auth2.init({
-                client_id: '696835881798-df73an1f0camplh5ebo18vmpr1a9v300.apps.googleusercontent.com'
-            }).then(function () {
-                renderGoogleSignInButton();
-            });
-        });
-    }
-
-    startGoogleSignIn();
-</script>
 
 </body>
 </html>

@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt');
 const knex = require('knex')(require('../knexfile'));
 
 async function iniciarSesion(req, res) {
+    console.log('Cuerpo de la solicitud:', req.body);
     try {
         const { correo_electronico, contrasena } = req.body;
 
@@ -13,21 +14,41 @@ async function iniciarSesion(req, res) {
             const contrasenaValida = await bcrypt.compare(contrasena, usuario.contrasena);
 
             if (contrasenaValida) {
-                // Las credenciales son válidas, el usuario ha iniciado sesión con éxito
-                res.redirect('/donacion');
+                // Las credenciales son válidas, actualizar el atributo activo a true
+                await knex('usuarios').where({ correo_electronico }).update({ activo: true });
+
+                // Verificar si 'usuario' tiene la propiedad 'id' antes de acceder a ella
+                if (usuario.id) {
+                    // Verificar el id_rol del usuario
+                    if (usuario.role_id === 1) {
+                        // Si es un usuario con id_rol 1, redirigir a la vista de donación
+                        return res.redirect('/donacion');
+                    } else if (usuario.role_id === 2) {
+                        // Si es un usuario con id_rol 2, redirigir a otra vista
+                        return res.redirect('/Administrador');
+                    } else {
+                        // Manejar otros casos de id_rol según sea necesario
+                        return res.status(403).json({ error: 'Acceso no autorizado' });
+                    }
+                } else {
+                    // Manejar el caso donde 'id' no está definido en 'usuario'
+                    return res.status(500).json({ error: 'Error al obtener la información del usuario.' });
+                }
             } else {
                 // Contraseña incorrecta
-                res.status(401).json({ error: 'Credenciales inválidas mal pass' });
+                return res.status(401).json({ error: 'Credenciales inválidas' });
             }
         } else {
             // Usuario no encontrado
-            res.status(401).json({ error: 'Credenciales inválidas Usuario no encontrado' });
+            return res.status(401).json({ error: 'Credenciales inválidas' });
         }
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
-        res.status(500).json({ error: 'Error al iniciar sesión.' });
+        return res.status(500).json({ error: 'Error al iniciar sesión.' });
     }
 }
+
+
 
 async function obtenerUsuarios(req, res) {
     try {
@@ -41,14 +62,15 @@ async function obtenerUsuarios(req, res) {
 
 async function crearUsuario(req, res) {
     try {
-        const { nombre, correo_electronico, contrasena, role_id } = req.body;
+        if (!req.body || !req.body.nombre || !req.body.correo_electronico || !req.body.contrasena || !req.body.role_id) {
+            return res.status(400).json({ error: 'Datos de formulario incompletos' });
+        }
 
-        console.log(contrasena);
+        const { nombre, correo_electronico, contrasena, role_id } = req.body;
 
         // Hash de la contraseña antes de almacenarla en la base de datos
         try {
             const hashContrasena = await bcrypt.hash(contrasena, 10);
-            // Resto del código
 
             const nuevoUsuario = {
                 nombre: nombre,
@@ -57,22 +79,21 @@ async function crearUsuario(req, res) {
                 role_id: role_id,
             };
 
-            console.log(contrasena);
-            console.log(hashContrasena);
-
             const resultado = await knex('usuarios').insert(nuevoUsuario);
-            res.json({ mensaje: 'Usuario creado con éxito', id: resultado[0] });
 
+            // Redirige a la vista deseada (reemplaza '/otra-vista' con la ruta real)
+            res.redirect('/login');
         } catch (error) {
             console.error('Error al hacer el hash de la contraseña:', error);
             return res.status(500).json({ error: 'Error al procesar la contraseña.' });
         }
-
     } catch (error) {
         console.error('Error al crear usuario:', error);
-        res.status(500).json({ error: 'Error al crear usuario.' });
+        return res.status(500).json({ error: 'Error al crear usuario.' });
     }
 }
+
+
 
 
 async function actualizarUsuario(req, res) {
@@ -105,5 +126,7 @@ async function eliminarUsuario(req, res) {
 module.exports = {
     iniciarSesion,
     crearUsuario,
+    obtenerUsuarios,
+    eliminarUsuario,
     // Agrega otras funciones de controlador según sea necesario
 };
