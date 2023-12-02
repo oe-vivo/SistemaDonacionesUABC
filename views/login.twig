@@ -113,7 +113,14 @@
             stroke-width: 4;
             stroke-dasharray: 240 1386;
         }
-
+         .imagen-estilo {
+    width: 200px;
+    height: 250px;
+    position: fixed; 
+    bottom: 10px; 
+    right: 10px; 
+    z-index: 1; /* Asegura que la imagen esté por encima del fondo */
+}
         .form {
             margin: 40px;
             position: absolute;
@@ -160,19 +167,29 @@
         .bold-button {
             font-weight: bold;
         }
+        .text-black {
+        color: #000000; /* Esto es negro */
+    }
+
+    .link-blue {
+        color: #0000FF; /* Esto es azul */
+        text-decoration: none; /* Quita el subrayado del enlace */
+    }
+
+    .link-blue:hover {
+        text-decoration: underline; /* Subraya al pasar el mouse */
+    }
     </style>
 </head>
 <body>
-<img src="Cimarroncin.png">
-<svg viewBox="0 0 320 300">
+ <img src="https://induccionuabc.files.wordpress.com/2019/08/listas_grupos_curso_induccion.png?w=353&h=491" class="imagen-estilo">
+                <svg viewBox="0 0 320 300">
     <div class="page">
         <div class="container">
             <div class="left">
                 <div class="login">¡Bienvenido al sistema de donaciones de la UABC!</div>
                 <div class="eula">La UABC te da la bienvenida a nuestra plataforma de donaciones. Tu apoyo impulsa la
-                    educación e investigación en nuestra institución, contribuyendo al crecimiento de nuestra comunidad
-                    académica.
-                </div>
+                    educación e investigación en nuestra institución.                </div>
             </div>
             <div class="right">
                 <svg viewBox="0 0 320 300">
@@ -198,13 +215,19 @@
                     <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016 0.008,34.20084 -25.00016,35-25.00016,35 h -239.99984 c 0,-0.0205 -25,4.01348 -25,38.5 0,34.48652 25,38.5 25,38.5 h 215 c 0,0 20,-0.99604 20,-25 0,-24.00396 -20,-25 -20,-25 h -190 c 0,0 -20,1.71033 -20,25 0,24.00396 20,25 20,25 h 168.57143"/>
                 </svg>
                 <div class="form">
-                    <form action="/iniciarSesion" method="post" id="loginForm">
-                        <label for="email"><strong>Correo Electrónico</strong></label>
-                        <input type="email" id="email" name="correo_electronico">
-                        <label for="password"><strong>Contraseña</strong></label>
-                        <input type="password" id="password" name="contrasena">
-                        <input type="submit" id="submit" value="Iniciar Sesión" class="bold-button">
-                    </form>
+                   <form action="/iniciarSesion" method="post">
+    <label for="email"><strong>Correo Electrónico</strong></label>
+    <input type="email" id="email" name="correo_electronico">
+    <label for="password"><strong>Contraseña</strong></label>
+    <input type="password" id="password" name="contrasena">
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <input type="submit" id="submit" value="Iniciar Sesión" class="bold-button">
+    <!-- Leyenda con enlace para registrar -->
+   <!-- Dentro de tu cuerpo de HTML, debajo del formulario -->
+<p class="text-black">Si no tienes una cuenta, ingresa <a href="/Registro" class="link-blue">aquí</a>.</p>
+
+</form>
+
                 </div>
             </div>
         </div>
@@ -263,8 +286,38 @@
         });
     </script>
 </svg>
+<script>
+    function onSignIn(googleUser) {
+        // Aquí puedes obtener la información del usuario usando googleUser.getBasicProfile()
+        // y enviarla al servidor para el proceso de inicio de sesión.
+        console.log('Usuario autenticado:', googleUser.getBasicProfile());
+    }
 
+    function renderGoogleSignInButton() {
+        gapi.signin2.render('google-signin-container', {
+            'scope': 'profile email',
+            'width': 240,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSignIn
+        });
+    }
+</script>
 
+<script>
+    function startGoogleSignIn() {
+        gapi.load('auth2', function () {
+            gapi.auth2.init({
+                client_id: '696835881798-df73an1f0camplh5ebo18vmpr1a9v300.apps.googleusercontent.com'
+            }).then(function () {
+                renderGoogleSignInButton();
+            });
+        });
+    }
+
+    startGoogleSignIn();
+</script>
 
 </body>
 </html>

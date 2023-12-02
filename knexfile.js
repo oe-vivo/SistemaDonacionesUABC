@@ -4,7 +4,7 @@ module.exports = {
     connection: {
         host: 'localhost',
         user: 'root',
-        password: 'erickson12',
+        password: 'root',
         database: 'uabc',
     },
     migrations: {

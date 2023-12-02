@@ -42,14 +42,14 @@
 </div>
 
     <h2>Para proceder con la facturación, es necesario que subas tu archivo PDF de situación fiscal. Este archivo es esencial para verificar tu información fiscal y completar el proceso de facturación. Por favor, selecciona y sube tu archivo utilizando el botón de abajo.</h2>
-    <form action="/ruta_del_servidor" method="post" enctype="multipart/form-data">
+    <form action="/uploadRFC/file-uploadRFC" method="post" enctype="multipart/form-data">
+        <input type="file" id="fileUpload" name="receipt" accept="image/*,application/pdf"><br><br>
         <label for="fileUpload">Selecciona el archivo PDF:</label>
-        <input type="file" id="fileUpload" name="fileUpload" accept=".pdf"><br><br>
-        <input type="button" id="upload-button" value="Subir Archivo">
+        <button type="submit" id="send-button">Enviar</button>
     </form>
 
    <script>
-    document.getElementById('upload-button').addEventListener('click', function() {
+    document.getElementById('send-button').addEventListener('click', function() {
         // Mostrar SweetAlert
         Swal.fire({
             title: '¡Gracias por tu donativo!',
