@@ -4,8 +4,11 @@ const twig = require('twig');
 const rolesController = require('./controllers/rolesController');
 const usuarioController = require('./controllers/usuarioController');
 const knex = require('knex')(require('./knexfile'));
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
+app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -43,15 +46,10 @@ app.get('/Factura', (req, res) => {
 });
 
 
-app.post('/iniciarSesion', usuarioController.iniciarSesion);
-
-// Agrega esto a tu archivo
-app.get('/registrar', (req, res) => {
-    // Renderiza la vista de registro Twig
-    res.render('Registro.twig');
+app.use((req, res, next) => {
+    console.log('Cuerpo de la solicitud:', req.body);
+    next();
 });
-
-
 
 // Rutas para roles
 // Ruta para obtener toda la información de la tabla

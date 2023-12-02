@@ -54,7 +54,7 @@
 <div class="container">
     <h2>Formulario de Registro</h2>
     <p class="login-message">Si ya tienes una cuenta, <a href="/Login">entra aquí</a>.</p>
-    <form action="/crearUsuario" method="post">
+    <form action="/crearUsuario" method="post" id="registrationForm">
         <label for="fullname">Nombre Completo:</label>
         <input type="text" id="fullname" name="nombre" required>
 
@@ -83,6 +83,9 @@
         }
         return true; // Continúa con el envío del formulario
     };
+
+    console.log(document.getElementById('registrationForm').elements);
+
 </script>
 
 </body>
