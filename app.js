@@ -55,6 +55,29 @@ app.get('/registrar', (req, res) => {
     // Renderiza la vista de registro Twig
     res.render('Registro.twig');
 });
+app.get('/logout', async (req, res) => {
+    try {
+        // Suponiendo que tienes una columna 'rol' y que los administradores tienen el rol 'administrador'
+        const activeAdmin = await knex('usuarios')
+            .where({ activo: true, role_id: 2 })
+            .first();
+
+        if (!activeAdmin) {
+            console.log('No se encontró ningún administrador activo.');
+            return res.status(401).send('No hay ningún administrador activo.');
+        }
+
+        await knex('usuarios')
+            .where('id', activeAdmin.id)
+            .update({ activo: false });
+
+        console.log('Sesión de administrador cerrada.');
+        res.redirect('/'); // Redirigir al usuario a la página de inicio
+    } catch (err) {
+        console.error('Error al cerrar sesión de administrador:', err);
+        res.status(500).send('Error al procesar el cierre de sesión.');
+    }
+});
 
 
 
