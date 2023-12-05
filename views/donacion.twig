@@ -1,92 +1,307 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Donaciones UABC</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UABC Make a Donation</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: white;
+    }
 
-    h2.donacion{
-    color: black;
-    /* Otros estilos de botón si los tienes */
+    .header {
+        background-color: #066C35;
+        color: white;
+        text-align: center;
+        padding: 10px 0;
+        font-size: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .logout-button {
+        padding: 10px 20px;
+        background-color: #066C35;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        cursor: pointer;
+        width: 100px;
+        height: 40px;
+    }
+
+    .header-logo {
+        height: 60px;
+        margin-right: 10px;
+    }
+
+    .main-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+    }
+
+    .carousel {
+        width: 100%;
+        height: 300px;
+        display: flex;
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
+
+    .photo {
+        flex: 0 0 100%;
+        margin: 0 10px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .photo img {
+        width: 58%;
+        height: 90%;
+        object-fit: cover;
+    }
+
+    .bank-info {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background-color: white;
+        padding: 10px;
+        width: 300px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        font-size: 0.9em;
+        z-index: 100;
+    }
+
+    .upload-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Aumenta este valor según lo necesites */
+    margin-top: 20px;
+    width: 100%;
 }
-    
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #086B40;
-            padding: 50px;
+
+
+    .custom-file-upload {
+        background-color: #0E9FB9;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    input[type="file"] {
+        display: none;
+    }
+
+    #career-select {
+        padding: 10px;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+    }
+
+    #send-button {
+        background-color: #0E9FB9;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    @media (max-width: 768px) {
+        .header-logo {
+            height: 45px;
         }
-        form {
-            background-color: #E1A648;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            border: 2px solid black; /* Borde negro alrededor del formulario */
+
+        .carousel {
+            height: 200px;
         }
-        h2 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            color: #black;
-        }
-        input, select {
-            width: 99%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            border: 1px solid black; /* Borde negro para inputs y select */
-            background-color: #E1A648; /* Color de fondo amarillo */
-            color: #333; /* Color de texto para mejor contraste */
-        }
-        button {
+
+        .photo img {
             width: 100%;
-            padding: 10px;
-            border-radius: 4px;
-            background-color: #0073e6;
-            color: #fff;
-            border: none;
-            cursor: pointer;
+            height: auto;
         }
-        button:hover {
-            background-color: #005bb5;
+
+        .bank-info {
+            width: 100%;
+            box-sizing: border-box;
         }
-        a {
-            display: block;
+    }
+
+    /* Estilos responsivos para iPhone SE o pantallas de 375px de ancho */
+    @media screen and (max-width: 375px) {
+        .header {
+            flex-direction: column;
             text-align: center;
-            margin-top: 20px;
-            color: #0073e6;
-            text-decoration: none;
+            padding: 5px;
         }
-    </style>
+
+        .header-logo, .logout-button {
+            margin: 0 auto;
+            display: block;
+        }
+
+        .carousel {
+            height: 150px;
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+        }
+
+        .bank-info {
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 0.8em;
+            margin-top: 10px;
+        }
+
+        .upload-container, .custom-file-upload, #send-button, input[type="checkbox"] + label {
+            width: 100%;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .custom-file-upload, #send-button {
+            padding: 8px;
+            font-size: 0.9em;
+        }
+
+        input[type="checkbox"] + label {
+            display: block;
+            margin-top: 10px;
+        }
+    }
+</style>
+
 </head>
 <body>
 
-    <h2 class = "donacion">Donaciones UABC</h2>
+ <div class="header">
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpp9PdI7lJeIwl5_acGIIBCXR7pN9OfXGzhCN_0hlscxlEAubtetXa8MQly1dbjT-v964&usqp=CAU">
+    Universidad Autónoma de Baja California. 
+    <br>Por la realización plena del hombre.
+    <a href="http://localhost:3000" class="logout-button">Logout</a>
+</div>
 
-    <form action="/procesar-donacion" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" name="nombre" required>
 
-        <label for="rfc">RFC:</label>
-        <input type="text" name="rfc" required>
 
-        <label for="importe">Importe a donar:</label>
-        <input type="number" name="importe" required>
+    <div class="main-container">
+       <div class="carousel" id="carousel">
+             <!-- Imagen 1 -->
+        <div class="photo">
+            <img src="https://www.elsoldetijuana.com.mx/incoming/edu82z-131190.jpg/ALTERNATES/LANDSCAPE_768/131190.jpg">
+        </div>
+        <!-- Imagen 2 -->
+        <div class="photo">
+           <img src="https://scontent.ftij2-1.fna.fbcdn.net/v/t39.30808-6/397587005_10168545520300051_3189746164093342670_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeE1nRPT_zDjLP60QOIbNCtzNwCLcydxTBc3AItzJ3FMFwqT-9_0IPlmALiLxyDnhQvc9hKjq32E9d2aoFwQNIe7&_nc_ohc=jSbhZGa-MRYAX91bFNJ&_nc_ht=scontent.ftij2-1.fna&oh=00_AfDc5H_8lfSjS0MsEmZzZJcH8vKHiBt760qCjI4xkqck0g&oe=656174A4">
+        </div>
 
-        <label for="metodoPago">Método de Pago:</label>
-        <select name="metodoPago" required>
-            <option value="tarjeta">Tarjeta de Crédito</option>
-            <option value="transferencia">Transferencia Bancaria</option>
-        </select>
+        <!-- Imagen 3 -->
+        <div class="photo">
+             <img src="https://scontent.ftij2-1.fna.fbcdn.net/v/t39.30808-6/394039194_7334753729868441_1364563522588845236_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGA2lR65Ubj6wLjEIUNiW4XWoiUF_DO89haiJQX8M7z2MDkDiQEtX38CUHJb3Hn1CZiBDRude7c56vKCsNi7XuF&_nc_ohc=z3dWwbufUQYAX8TStgY&_nc_oc=AQnOPt6Nj0szTzbSFuIDnxttFsa-x3D5f0QWldElzJbhLlGOTd6kX6ViBy04jTAUyxY&_nc_ht=scontent.ftij2-1.fna&oh=00_AfDkyp9-AwCnEjL-UOrXR2gIotnJHxyo03oMr9oxB-y5Og&oe=6561DCCA">
+        </div>
 
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" name="telefono" required>
+        <!-- Imagen 4 -->
+        <div class="photo">
+             <img src="https://scontent.ftij2-1.fna.fbcdn.net/v/t39.30808-6/346661607_912814933342105_4240990760163929716_n.jpg?stp=cp6_dst-jpg&_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFZ9Zq3AqOpFakBmlFSmjaC_Qa3MTHiLCf9BrcxMeIsJyKYI9XlANsk0MLTHWeTsB5OquG6koPzhc9ZfwkHpkaO&_nc_ohc=QX-LVnLAPzMAX_QBK15&_nc_ht=scontent.ftij2-1.fna&oh=00_AfDUmnuTcFUd270BkcNZdalrBWtjMi98IUgdP3TmTMLVbA&oe=65629643">
+             </div>
 
-        <button type="submit">Donar</button>
-    </form>
+        <!-- Imagen 5 -->
+        <div class="photo">
+             <img src="https://scontent.fcxl1-1.fna.fbcdn.net/v/t1.18169-9/431872_10151603746986963_1219725711_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=0f5592&_nc_eui2=AeGY4PNqn8ighADDmbiXw63x6yuR6TwJ1a7rK5HpPAnVrsYbQ20-h4Di60kXOfCwP9CMV0hW5YA-jHQm270AcpUb&_nc_ohc=GyAucZKICvkAX8_qrdS&_nc_ht=scontent.fcxl1-1.fna&oh=00_AfBj6CYodo6hsgOYp-YHlkKWurdRsb3NVNJt3kqpegrQfw&oe=657E3EE7">
+             </div>
 
-    <a href="/historial-donaciones" class="button" style="color: black;">Historial de Donaciones</a>
+        <!-- Imagen 6 -->
+        <div class="photo">
+             <img src="https://scontent.ftij2-1.fna.fbcdn.net/v/t39.30808-6/338811553_914349659767506_843347055551871054_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGTAkYfDTmSBVYo3j3f5Nb-uzUkLVInjiO7NSQtUieOI6zhhUERXF82KkR6l75oHIxtpYptibYSUO2gAwURH1g7&_nc_ohc=HW5745c9LXcAX_2MLoc&_nc_ht=scontent.ftij2-1.fna&oh=00_AfALgNDD0hIOxzrGHH40Ztqv6WO8c1iXO83DUXpdOQuPRA&oe=65617838">
+             </div>
+        </div>
+        
+        <div class="bank-info">
+            <h2>Información de cuenta bancaria</h2>
+            <p>Banco: Banco Santander (México) S.A</p>
+            <p>Beneficiario: Universidad Autónoma de Baja California</p>
+            <p>Cuenta: 65501399913</p>
+            <p>CLABE interbancaria: 014020655013999134</p>
+            <p>TAX ID: UAE5702287S5</p>
+            <p>Código Swift: BMSXMXMM</p>
+            <p>Dirección: Avenida Alvaro Obregon Sin Número de Colonia Nueva C.P.21100</p>
+            <p>Ciudad: Mexicali, Baja California</p>
+            <p>País: México</p>
+        </div>
+
+
+        <div class="upload-container">
+            <form id="donation-upload-form" action="/upload/file-upload" method="post" enctype="multipart/form-data">
+                <input id="file-upload" name="receipt" type="file" accept="image/*,application/pdf" style="display: none;"/>
+                <label for="file-upload" class="custom-file-upload">
+                    Subir Imagen de tu donación/transferencia
+                </label>
+                <button id="send-button" style="margin-left: 20px;">Enviar</button>
+
+            </form>
+        </div>
+<div>
+    <input type="checkbox" id="scales" name="scales" checked />
+    <label for="scales">Acepto términos y Condiciones</label>
+  </div>
+    
+
+    <script>
+        // Obtener el contenedor del carrusel
+        var carousel = document.getElementById('carousel');
+
+        // Función para mover el carrusel
+        function moveCarousel() {
+            // Mover el carrusel
+            carousel.scrollLeft += carousel.offsetWidth; // Desplazamiento igual al ancho del carrusel
+
+            // Si el carrusel alcanza el final, vuelve al inicio
+            if (carousel.scrollLeft >= (carousel.scrollWidth - carousel.clientWidth)) {
+                carousel.scrollLeft = 0;
+            }
+        }
+
+        // Establecer el intervalo para mover el carrusel (por ejemplo, cada 3 segundos)
+        setInterval(moveCarousel, 3000);
+    </script>
+
+<script>
+    document.getElementById('send-button').addEventListener('click', function() {
+        var isChecked = document.getElementById('scales').checked;
+        if (isChecked) {
+            Swal.fire({
+                title: '¡Gracias por tu donativo!',
+                // Aquí se añade el enlace dentro del texto del SweetAlert
+                html: 'Con tu apoyo ayudaremos a más cimarrones a alcanzar sus metas. <br> Si quieres facturar, presiona <a href="/Factura">aquí</a>.',
+                icon: 'success',
+                confirmButtonText: 'Cerrar'
+            });
+        } else {
+            Swal.fire({
+                title: 'Error',
+                text: 'Por favor, acepta los términos y condiciones para continuar.',
+                icon: 'error',
+                confirmButtonText: 'Cerrar'
+            });
+        }
+    });
+</script>
+
+
+
+
+
 </body>
 </html>

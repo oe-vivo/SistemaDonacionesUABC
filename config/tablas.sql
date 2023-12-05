@@ -66,7 +66,7 @@ CREATE TABLE Roles (
                        nombre_del_rol VARCHAR(255) NOT NULL
 ); --Rol 1=Admin 2=Usuario 3=Coordinador
 
-INSERT INTO Usuarios (nombre, correo_electronico, contraseña, role_id) VALUES
+INSERT INTO Usuarios (nombre, correo_electronico, contrasena, role_id) VALUES
 ('Juan Pérez', 'juan.perez@email.com', 'contraseña123', 1),
 ('Ana Gómez', 'ana.gomez@email.com', 'contraseña456', 2),
 ('Carlos López', 'carlos.lopez@email.com', 'contraseña789', 3);
