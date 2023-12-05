@@ -1,49 +1,60 @@
 const express = require('express');
-const router = express.Router();
 const multer = require('multer');
-const upload = multer({ dest: 'uploads/' });
 const Tesseract = require('tesseract.js');
+const router = express.Router();
+const knex = require('knex')(require('./knexfile'));
 
+// Configuración del almacenamiento de Multer para constancias fiscales
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'constanciasFiscales/'); // Asegúrate de que esta carpeta exista o Multer la creará
     },
     filename: function (req, file, cb) {
-        // Aquí puedes personalizar cómo se nombra el archivo en el servidor
+        // Personaliza cómo se nombra el archivo en el servidor
         cb(null, Date.now() + '-' + file.originalname);
     }
 });
 
 const uploader = multer({ storage: storage });
+
 // Ruta para manejar la carga del archivo y el procesamiento OCR
-router.post('/file-uploadRFC', uploader.single('receipt'), (req, res) => {
+router.post('/file-uploadRFC', uploader.single('receipt'), async (req, res) => {
     const file = req.file;
 
-    // Procesar el archivo con Tesseract.js para inglés y español
-    Tesseract.recognize(
-        file.path,
-        'eng+spa', // Especificando inglés y español
-    ).then(({ data: { text } }) => {
-        // Utilizar una expresión regular para encontrar el RFC después de la frase
-        // "\s*" coincide con cualquier cantidad de espacios en blanco
-        // "\s+" coincide con uno o más espacios en blanco (incluyendo saltos de línea)
-        const regexRfc = /Registro Federal de Contribuyentes:\s+([A-ZÑ&]{3,4}\d{6}(?:[A-Z\d]{3})?)/;
+    try {
+        // Extraer el texto con Tesseract
+        const { data: { text } } = await Tesseract.recognize(file.path, 'eng+spa');
+        const regexRfc = /Registro Federal de Contribuyentes:\s*([^\r\n]+)/;
         const matchesRfc = regexRfc.exec(text);
 
-        let rfc = null;
         if (matchesRfc && matchesRfc[1]) {
-            rfc = matchesRfc[1].trim(); // ".trim()" elimina espacios en blanco adicionales alrededor del RFC
-            console.log('RFC detectado:', rfc);
+            const rfc = matchesRfc[1].trim();
+
+            // Buscar la donación más reciente para obtener el user_id
+            const latestDonation = await knex('donaciones').orderBy('created_at', 'desc').first();
+            if (!latestDonation) {
+                return res.status(400).send('No se encontraron donaciones recientes.');
+            }
+
+            // Crear un registro en la tabla 'donadores'
+            await knex('donadores').insert({
+                user_id: latestDonation.user_id,
+                rfc: rfc,
+                constancia_fiscal: file.path,
+                created_at: new Date(),
+                updated_at: new Date()
+            });
+
+            res.redirect('/'); // Redirigir al usuario a la página '/nosotros'
         } else {
             console.log('RFC no encontrado.');
+            res.status(400).send('RFC no detectado en la constancia.');
         }
-
-        res.send('Procesamiento completado. RFC detectado: ' + (rfc || 'No encontrado.'));
-        console.log(text);
-    }).catch(err => {
-        console.error(err);
-        res.status(500).send('Error al procesar el archivo');
-    });
+    } catch (err) {
+        console.error('Error al procesar el archivo:', err);
+        res.status(500).send('Error al procesar el archivo.');
+    }
 });
+
 
 module.exports = router;
