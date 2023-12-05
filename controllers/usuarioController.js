@@ -35,12 +35,15 @@ async function iniciarSesion(req, res) {
                     return res.status(500).json({ error: 'Error al obtener la información del usuario.' });
                 }
             } else {
+
+                res.redirect('/login');
                 // Contraseña incorrecta
-                return res.status(401).json({ error: 'Credenciales inválidas' });
+                //return res.status(401).json({ error: 'Credenciales inválidas' });
             }
         } else {
+            res.redirect('/login');
             // Usuario no encontrado
-            return res.status(401).json({ error: 'Credenciales inválidas' });
+            //return res.status(401).json({ error: 'Credenciales inválidas' });
         }
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
@@ -68,7 +71,6 @@ async function crearUsuario(req, res) {
 
         const { nombre, correo_electronico, contrasena, role_id } = req.body;
 
-        // Hash de la contraseña antes de almacenarla en la base de datos
         try {
             const hashContrasena = await bcrypt.hash(contrasena, 10);
 
@@ -81,8 +83,16 @@ async function crearUsuario(req, res) {
 
             const resultado = await knex('usuarios').insert(nuevoUsuario);
 
-            // Redirige a la vista deseada (reemplaza '/otra-vista' con la ruta real)
-            res.redirect('/login');
+            // Verifica si se insertaron registros correctamente
+            if (resultado && resultado.length > 0) {
+                console.error(resultado);
+
+                // Redirige solo si la inserción fue exitosa
+                res.redirect('/login');
+            } else {
+                // Manejar el caso en que no se haya insertado correctamente
+                return res.status(500).json({ error: 'Error al crear usuario en la base de datos.' });
+            }
         } catch (error) {
             console.error('Error al hacer el hash de la contraseña:', error);
             return res.status(500).json({ error: 'Error al procesar la contraseña.' });
