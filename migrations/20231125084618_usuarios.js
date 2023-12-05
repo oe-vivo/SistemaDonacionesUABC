@@ -11,6 +11,7 @@ exports.up = function (knex) {
         table.integer('role_id').unsigned().notNullable();
         table.foreign('role_id').references('roles.role_id'); // Clave foránea que referencia la columna role_id de la tabla roles
         table.timestamps(true, true);
+        table.boolean('activo');
     });
 };
 

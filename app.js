@@ -6,6 +6,7 @@ const usuarioController = require('./controllers/usuarioController');
 const knex = require('knex')(require('./knexfile'));
 const uploadRoutes = require('./upload');
 const uploadRfcRoutes=require('./uploadRFC');
+const donacionesController = require("./controllers/donacionesController");
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -79,8 +80,6 @@ app.get('/logout', async (req, res) => {
     }
 });
 
-
-
 // Rutas para roles
 // Ruta para obtener toda la información de la tabla
 app.get('/api/roles', rolesController.obtenerRoles);
@@ -93,6 +92,7 @@ app.put('/api/roles/:id', rolesController.actualizarRol);
 
 // Eliminar un rol
 app.delete('/api/roles/:id', rolesController.eliminarRol);
+app.get('/donaciones', donacionesController.obtenerDonaciones);
 
 // Incluye más rutas y controladores según se necesite
 
